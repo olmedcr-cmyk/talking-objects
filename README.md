@@ -63,6 +63,11 @@ Con `s` + Enter empieza una conversación y con `e` + Enter termina. La página 
 
 ## En una Raspberry Pi 5
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/raspberry-dark.svg">
+  <img alt="Raspberry Pi 5 en isométrico, con el cabezal de 40 pines y los siete pines que usa el kit resaltados, una tarjeta de sonido USB enchufada y la alimentación por USB-C" src="docs/assets/raspberry-light.svg" width="100%">
+</picture>
+
 ```bash
 scp -r device pi@objeto.local:~/talking-objects
 ssh pi@objeto.local

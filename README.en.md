@@ -55,6 +55,11 @@ FAKE_AUDIO=1 TRIGGER_MODE=keyboard .venv/bin/python -m talking_objects -v
 
 ## On a Raspberry Pi 5
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/raspberry-dark.svg">
+  <img alt="Isometric Raspberry Pi 5 with the 40-pin header and the seven pins the kit uses highlighted, a USB sound card plugged in and USB-C power" src="docs/assets/raspberry-light.svg" width="100%">
+</picture>
+
 ```bash
 scp -r device pi@object.local:~/talking-objects
 ssh pi@object.local

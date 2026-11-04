@@ -2,6 +2,11 @@
 
 La Raspberry Pi 5 es el cuerpo del objeto: oye por un micrófono, habla por un altavoz, nota cuándo alguien se acerca y mueve luces y pantallas. Todo corre en un solo proceso de Python, sin navegador ni kiosco.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/raspberry-dark.svg">
+  <img alt="Raspberry Pi 5 en isométrico, con el cabezal de 40 pines y los siete pines que usa el kit resaltados, una tarjeta de sonido USB enchufada y la alimentación por USB-C" src="assets/raspberry-light.svg" width="100%">
+</picture>
+
 ## Lista de materiales
 
 | | Pieza | Notas |
@@ -33,6 +38,38 @@ La Raspberry Pi 5 es el cuerpo del objeto: oye por un micrófono, habla por un a
 > En la Pi 5 la librería clásica `rpi_ws281x` no funciona: usaba el DMA y el PWM de los chips BCM y la Pi 5 lleva el chip RP1. El kit saca la señal de la tira por SPI con `adafruit-circuitpython-neopixel-spi`, que sí funciona.
 
 Comprueba siempre el pinout de tu placa antes de conectar. Con la Pi apagada.
+
+### Los 40 pines, uno a uno
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/pines-dark.svg">
+  <img alt="Cabezal de 40 pines de la Raspberry Pi con el número y el nombre de cada pin; marcados, los pines 3, 4, 5, 6, 9, 11 y 19 que usa el kit, con su función" src="assets/pines-light.svg" width="100%">
+</picture>
+
+## El audio: del auricular a la Raspberry
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/audio-dark.svg">
+  <img alt="Recorrido del audio: un auricular despiezado con su altavoz y su cápsula de micrófono, el cable hasta la tarjeta de sonido USB y la Raspberry Pi; debajo, los seis pasos de la voz de ida y de vuelta" src="assets/audio-light.svg" width="100%">
+</picture>
+
+El sonido no pasa por los pines: entra y sale por la **tarjeta de sonido USB**, que hace de oído y de boca de la Raspberry.
+
+Un auricular de teléfono lleva dentro dos piezas y cuatro hilos:
+
+| Pieza | Va a | Notas |
+|---|---|---|
+| Altavoz (en la parte de la oreja) | Salida de auriculares de la tarjeta, normalmente verde | Dos hilos, sin polaridad que importe. |
+| Cápsula de micrófono (en la parte de la boca) | Entrada de micro de la tarjeta, normalmente rosa | Dos hilos. Si es electret, tiene polaridad: el negativo, unido a la carcasa, va a la malla del conector. |
+
+Lo que conviene saber antes de soldar:
+
+- **Los teléfonos antiguos llevan cápsulas de carbón**, que necesitan una corriente continua que la tarjeta no da. Cámbiala por una cápsula electret: la entrada de micro de una tarjeta USB sí alimenta las electret.
+- **Un conector de 3,5 mm por pieza**: uno de tres polos para el micro y otro para el altavoz. Si tu tarjeta tiene un solo conector combinado de cuatro polos, usa un adaptador separador.
+- **Prueba con una grabación** antes de cerrar el objeto: `arecord -d 3 -f S16_LE -r 48000 /tmp/p.wav && aplay /tmp/p.wav` (ver [Comprobaciones rápidas](#comprobaciones-rápidas)).
+- **Si el agente se oye a sí mismo** y se corta, sube `MIC_DUCK_DB`. Con auricular hace falta poco; con altavoz abierto, más.
+
+Dentro de la Raspberry, un solo hilo es dueño de la tarjeta: lee un bloque del micro, escribe uno al altavoz y baja el micro mientras el agente habla. Así lectura y escritura nunca compiten, que es la causa clásica de cortes y silencios.
 
 ## Sistema
 
