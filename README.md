@@ -53,7 +53,7 @@ Tres ideas sostienen el diseño:
 ## Empezar en cinco minutos, sin hardware
 
 ```bash
-git clone <este-repo> talking-objects && cd talking-objects/device
+git clone https://github.com/olmedcr-cmyk/talking-objects.git && cd talking-objects/device
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cp config.example.env config.env && cp rules.example.toml rules.toml
 FAKE_AUDIO=1 TRIGGER_MODE=keyboard .venv/bin/python -m talking_objects -v
