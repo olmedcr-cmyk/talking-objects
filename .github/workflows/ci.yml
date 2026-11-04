@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  device:
+    name: Device (Python)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: device
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        # Only what the tests need: the hardware and voice SDKs are imported lazily.
+        run: pip install numpy==2.4.4 websockets==16.0 aiohttp==3.14.3 pytest pytest-asyncio ruff
+      - name: Lint
+        run: ruff check .
+      - name: Test
+        run: python -m pytest -q
+
+  worker:
+    name: Worker (TypeScript)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: worker
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test

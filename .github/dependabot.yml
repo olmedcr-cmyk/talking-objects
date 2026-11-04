@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /worker
+    schedule: { interval: monthly }
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
+  # Python pins are deliberate (see device/requirements.txt): bump them by hand.

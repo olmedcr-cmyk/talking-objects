@@ -1,0 +1,27 @@
+name: Algo no funciona
+description: Un fallo en el dispositivo, el Worker o la documentación
+labels: [bug]
+body:
+  - type: textarea
+    id: que
+    attributes:
+      label: Qué pasa
+      description: Qué esperabas y qué ocurrió.
+    validations: { required: true }
+  - type: dropdown
+    id: donde
+    attributes:
+      label: Dónde
+      options: [Dispositivo (Raspberry), Worker / MCP, Documentación]
+    validations: { required: true }
+  - type: input
+    id: proveedor
+    attributes:
+      label: PROVIDER_MODE
+      placeholder: auto | vidiv | elevenlabs
+  - type: textarea
+    id: log
+    attributes:
+      label: Registro
+      description: "`journalctl -u talking-objects -n 100`. Quita claves y cualquier frase de visitantes."
+      render: text

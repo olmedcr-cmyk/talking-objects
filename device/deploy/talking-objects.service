@@ -1,0 +1,20 @@
+[Unit]
+Description=Talking object (Vidiv + ElevenLabs)
+After=network-online.target sound.target
+Wants=network-online.target
+# If the venue network is slow to come up, never give up.
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=__DEVICE_DIR__
+ExecStart=__DEVICE_DIR__/.venv/bin/python -m talking_objects --config __DEVICE_DIR__/config.env
+User=__USER__
+# Audio and GPIO need the user's runtime session.
+Environment=XDG_RUNTIME_DIR=/run/user/__UID__
+Environment=PYTHONUNBUFFERED=1
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+{
+  // Talking objects — Worker configuration.
+  // Secrets are not here: set them with
+  //   npx wrangler secret put DEVICE_KEY
+  //   npx wrangler secret put MCP_KEY
+  //   npx wrangler secret put ADMIN_KEY   (optional, for POST /context)
+  "name": "talking-objects",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-01",
+  "observability": { "enabled": true },
+  "durable_objects": {
+    "bindings": [{ "name": "RELAY", "class_name": "Relay" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Relay"] }]
+}

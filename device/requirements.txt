@@ -1,0 +1,23 @@
+# Talking objects — device (Raspberry Pi 5, Raspberry Pi OS Bookworm)
+#
+# The conversation SDKs are pinned to the versions TeleTUP was validated
+# against. Some code depends on verified SDK behaviour (ElevenLabs'
+# `callback_end_session`, LiveKit's text-stream handler). Before bumping a
+# pin, re-check that wiring and run the tests.
+
+# Conversation: both providers, because fallback is automatic
+livekit==1.1.17      # LiveKit room transport (Vidiv)
+elevenlabs==2.66.0   # ElevenLabs Agents SDK
+websockets==16.0     # outbound link to the Worker (MCP)
+aiohttp==3.14.3      # local read-only status page
+
+# Audio
+sounddevice==0.5.6   # PortAudio bridge (needs libportaudio2)
+numpy==2.4.4         # DSP: gain, RMS, ducking, resampling
+
+# Hardware. Not pinned: they follow the Raspberry Pi OS image of the day.
+gpiozero                             # trigger; uses lgpio on the Pi 5
+adafruit-circuitpython-neopixel-spi  # WS2812 over SPI (Pi 5 cannot use rpi_ws281x)
+adafruit-blinka                      # board/busio layer neopixel-spi needs
+RPLCD                                # 20x4 LCD over I2C
+smbus2                               # I2C bus for RPLCD

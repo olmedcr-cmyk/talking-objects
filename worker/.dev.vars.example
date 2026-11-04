@@ -1,0 +1,4 @@
+# Copy to .dev.vars for `npm run dev`. Never commit .dev.vars.
+DEVICE_KEY=change-me-device
+MCP_KEY=change-me-mcp
+ADMIN_KEY=change-me-admin

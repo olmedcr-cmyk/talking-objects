@@ -1,0 +1,15 @@
+name: Idea o periférico nuevo
+description: Una acción, un periférico o una experiencia que falta
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: La idea
+      description: Qué haría el objeto y en qué experiencia.
+    validations: { required: true }
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware
+      description: Pieza, conexión y librería, si las conoces.

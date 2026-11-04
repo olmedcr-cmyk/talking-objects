@@ -1,0 +1,26 @@
+# Cabina: la luz acompaña, la pantalla murmura.
+
+[[rule]]
+name = "saludo"
+speaker = "agent"
+pattern = "\\b(hola|hello|bienvenid\\w*)\\b"
+action = "light"
+args = { color = "warm", effect = "breathe", seconds = 6 }
+per_call = 1
+
+[[rule]]
+name = "despedida"
+speaker = "any"
+pattern = "\\b(adi[oó]s|hasta luego|chao|bye)\\b"
+action = "light"
+args = { color = "violet", effect = "breathe", seconds = 8 }
+per_call = 1
+
+[[rule]]
+name = "escucha"
+speaker = "visitor"
+pattern = "\\b(recuerd\\w*|echo de menos|miedo|sola?)\\b"
+action = "show_message"
+args = { text = "TE ESTOY ESCUCHANDO" }
+cooldown_s = 45
+per_call = 1
