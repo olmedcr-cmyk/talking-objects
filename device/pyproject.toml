@@ -1,0 +1,27 @@
+[project]
+name = "talking-objects"
+version = "0.1.0"
+description = "Physical objects that hold a conversation: Raspberry Pi, Vidiv and ElevenLabs agents, lights and MCP."
+readme = "../README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Divina Machina by Qs Ventures" }]
+
+[project.scripts]
+talking-objects = "talking_objects.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["talking_objects*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

@@ -1,0 +1,49 @@
+# Reactor rules: what the object does when it hears certain things.
+#
+# Read at start-up; tune them during installation without touching code.
+# The FIRST rule that matches wins, so order matters.
+#
+#   pattern     regular expression, case-insensitive
+#   speaker     any | agent | visitor
+#   action      an action registered on the device (light, show_message, …)
+#   args        the action's arguments
+#   cooldown_s  minimum seconds between two firings of this rule
+#   per_call    maximum firings per conversation
+#
+# The match is deliberately crude: the object does not need to understand,
+# only to look alive at the moments that matter.
+
+[[rule]]
+name = "greeting"
+speaker = "agent"
+pattern = "\\b(hola|hello|bienvenid\\w*|welcome)\\b"
+action = "light"
+args = { color = "warm", effect = "breathe", seconds = 5 }
+per_call = 1
+
+[[rule]]
+name = "memory"
+speaker = "any"
+pattern = "\\b(recuerd\\w*|memoria|remember\\w*|memor(y|ies))\\b"
+action = "light"
+args = { color = "blue", effect = "breathe", seconds = 8 }
+cooldown_s = 25
+per_call = 2
+
+[[rule]]
+name = "nature"
+speaker = "any"
+pattern = "\\b(árbol\\w*|arbol\\w*|bosque|río|rio|mar|tree\\w*|forest|river|ocean)\\b"
+action = "light"
+args = { color = "green", effect = "solid", seconds = 6 }
+cooldown_s = 25
+per_call = 2
+
+[[rule]]
+name = "listening"
+speaker = "visitor"
+pattern = "\\b(solo|sola|alone|miedo|afraid)\\b"
+action = "show_message"
+args = { text = "TE ESTOY ESCUCHANDO" }
+cooldown_s = 45
+per_call = 1

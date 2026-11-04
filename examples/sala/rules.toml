@@ -1,0 +1,25 @@
+# Sala: la luz es escenografía.
+
+[[rule]]
+name = "escena-agua"
+speaker = "agent"
+pattern = "\\b(agua|mar|lluvia|río|rio)\\b"
+action = "light"
+args = { color = "blue", effect = "breathe", seconds = 20 }
+cooldown_s = 20
+
+[[rule]]
+name = "escena-fuego"
+speaker = "agent"
+pattern = "\\b(fuego|sol|calor|llama\\w*)\\b"
+action = "light"
+args = { color = "amber", effect = "breathe", seconds = 20 }
+cooldown_s = 20
+
+[[rule]]
+name = "escena-bosque"
+speaker = "agent"
+pattern = "\\b(bosque|árbol\\w*|arbol\\w*|musgo|tierra)\\b"
+action = "light"
+args = { color = "green", effect = "breathe", seconds = 20 }
+cooldown_s = 20

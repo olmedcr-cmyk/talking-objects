@@ -1,0 +1,29 @@
+# Objeto: la luz respira con lo que le emociona.
+
+[[rule]]
+name = "naturaleza"
+speaker = "any"
+pattern = "\\b(árbol\\w*|arbol\\w*|bosque|mar|río|rio|lluvia|sol)\\b"
+action = "light"
+args = { color = "green", effect = "breathe", seconds = 8 }
+cooldown_s = 30
+per_call = 2
+
+[[rule]]
+name = "noche"
+speaker = "any"
+pattern = "\\b(noche|sueñ\\w*|estrella\\w*|luna)\\b"
+action = "light"
+args = { color = "blue", effect = "breathe", seconds = 8 }
+cooldown_s = 30
+per_call = 2
+
+# Va la última: casa con cualquier frase del agente y, como gana la primera
+# regla que casa, delante taparía a todas las demás.
+[[rule]]
+name = "despertar"
+speaker = "agent"
+pattern = "."
+action = "light"
+args = { color = "warm", effect = "pulse", seconds = 2 }
+per_call = 1
