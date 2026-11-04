@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Vulnerabilidades
-    url: https://github.com/OWNER/talking-objects/security/advisories/new
+    url: https://github.com/olmedcr-cmyk/talking-objects/security/advisories/new
     about: No abras un issue público; usa un aviso privado (ver SECURITY.md).
